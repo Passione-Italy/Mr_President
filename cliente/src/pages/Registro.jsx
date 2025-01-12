@@ -5,6 +5,7 @@ export default function Registrar() {
 
 const [nome, setNome] = useState('');
 const [email, setEmail] = useState('');
+const [valor, setValor] = useState(0);
 
 const navigate = useNavigate()
 const registrarPessoa = async (event) =>{
@@ -15,7 +16,8 @@ const registrarPessoa = async (event) =>{
        headers: {'Content-type': 'Application/json'},
        body: JSON.stringify({
         nome: nome,
-        email: email
+        email: email,
+        valor: valor
        })
 
   });
@@ -32,6 +34,8 @@ return(
 <form onSubmit={registrarPessoa}>
   <input type="text" name="" id="" value={nome} onChange={(event)=> setNome(event.target.value)}/>
   <input type="email" name="" id="" value={email} onChange={(event)=> setEmail(event.target.value)} />
+  <input type="number" name="" id="" value={valor} onChange={(event)=> setValor(event.target.value)} />
+
   <button>Salvar</button>
 </form>
 </main>

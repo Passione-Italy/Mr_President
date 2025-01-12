@@ -37,11 +37,12 @@ export default function Home() {
     const doc = new jsPDF();
     const tabela = usuarios.map(usuario => [
       usuario.nome,
-      usuario.email
+      usuario.email,
+      usuario.valor
     ])
     doc.text("Lista de usuarios", 10, 10);
     doc.autoTable({
-      head: [["Nome", "E-mail"]],
+      head: [["Nome", "E-mail", "Valor"]],
       body: tabela
     })
 
@@ -54,11 +55,13 @@ export default function Home() {
       <tr>
         <td>Nome</td>
         <td>E-mail</td>
+        <td>Valor</td>
       </tr>
       {usuarios.map((usuario) =>
         <tr key={usuario.id}>
           <td>{usuario.nome}</td>
           <td>{usuario.email}</td>
+          <td>{usuario.valor}</td>
           <td><button onClick={()=> removerPessoa(usuario.id)}>
            <DeleteIcon/>
             </button></td>
