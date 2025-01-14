@@ -8,13 +8,13 @@ app.use(cors());
 let usuarios = [];
 
 app.post('/usuarios', (req, res) => {
-    const { nome, email } = req.body;
+    const { nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora } = req.body;
     
-    if (!nome || !email) {
-        return res.status(400).json({ erro: 'Nome e email são obrigatórios' });
+    if (!nome || !dlc || !valor || !lancamento || !avaliacao || !requisitos || !desenvolvedora) {
+        return res.status(400).json({ erro: 'Nome, dlc, valor, lançamento são obrigatórios' });
     }
 
-    const novoUsuario = { id: usuarios.length + 1, nome, email };
+    const novoUsuario = { id: usuarios.length + 1, nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora };
     usuarios.push(novoUsuario);
     
     res.status(201).json(novoUsuario);
@@ -37,7 +37,7 @@ app.get('/usuarios/:id', (req, res) => {
 
 app.put('/usuarios/:id', (req, res) => {
     const { id } = req.params;
-    const { nome, email } = req.body;
+    const { nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora } = req.body;
     
     const usuario = usuarios.find(u => u.id === parseInt(id));
     
@@ -46,7 +46,13 @@ app.put('/usuarios/:id', (req, res) => {
     }
     
     usuario.nome = nome || usuario.nome;
-    usuario.email = email || usuario.email;
+    usuario.dlc = dlc || usuario.dlc;
+    usuario.valor = valor || usuario.valor;
+    usuario.lancamento = lancamento || usuario.lancamento;
+    usuario.avaliacao = avaliacao || usuario.avaliacao;
+    usuario.requisitos = requisitos || usuario.requisitos;
+    usuario.desenvolvedora = desenvolvedora || usuario.desenvolvedora
+
     
     res.status(200).json(usuario);
 });
