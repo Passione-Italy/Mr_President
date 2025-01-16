@@ -49,15 +49,7 @@ export default function Registrar() {
     <main>
       <form onSubmit={registrarPessoa}>
 
-        {/*
-        <input type="text" name="" id="" value={nome} onChange={(event) => setNome(event.target.value)} />
-        <input type="text" name="" id="" value={dlc} onChange={(event) => setDlc(event.target.value)} />
-        <input type="number" name="" id="" value={valor} onChange={(event) => setValor(event.target.value)} />
-        <input type="date" name="" id="" value={lancamento} onChange={(event) => setLancamento(event.target.value)} />
-        <input type="number" name="" id="" value={avaliacao} onChange={(event) => setAvaliacao(event.target.value)} />
-        <input type="text" name="" id="" value={requisitos} onChange={(event) => setRequisitos(event.target.value)} />
-        <input type="text" name="" id="" value={desenvolvedora} onChange={(event) => setDesenvolvedora(event.target.value)} />
-*/}
+       
 
 
 
@@ -101,7 +93,9 @@ export default function Registrar() {
 
           </div>
         </Box>
-        <Button variant="contained" >Salvar</Button>
+
+     
+        <button><Button variant="contained" >Salvar</Button></button>
       </form>
 
 
