@@ -6,6 +6,15 @@ import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Janela from "./Janela";
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+
 
 export default function Home() {
   const [nome, setNome] = useState('');
@@ -24,6 +33,10 @@ export default function Home() {
 
 
   };
+
+  
+  
+
   const fecharJanela = () => setJanelaAberta(false);
 
   const handleFormSubmit = (e) => {
@@ -100,8 +113,10 @@ export default function Home() {
   }
   return (
     <div>
-    <Button variant="contained" onClick={()=> exportarPDF()}>Botão</Button>
-    <table>
+    <Button variant="contained" onClick={()=> exportarPDF()}>Gerar PDF</Button>
+<br/><br/>
+    
+    <table border="1">
       <tr>
         <td>Nome</td>
         <td>DLC</td>
