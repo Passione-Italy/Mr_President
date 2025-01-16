@@ -116,15 +116,16 @@ export default function Home() {
         <td>Avaliação</td>
         <td>Requisitos</td>
         <td>Desenvolvedora</td>
-        <td>Ações</td>
+        <td>Excluir</td>
+        <td>Alterar</td>
       </tr>
       {usuarios.map((usuario) =>
         <tr key={usuario.id}>
           <td>{usuario.nome}</td>
           <td>{usuario.dlc}</td>
-          <td>{usuario.valor}</td>
+          <td>R${usuario.valor}</td>
           <td>{usuario.lancamento}</td>
-          <td>{usuario.avaliacao}</td>
+          <td>{usuario.avaliacao}/5</td>
           <td>{usuario.requisitos}</td>
           <td>{usuario.desenvolvedora}</td>
           <td><button onClick={()=> removerPessoa(usuario.id)}>
