@@ -16,9 +16,6 @@ const respostaErro = (res, status, mensagem) => {
 };
 
 
-const emailJaCadastrado = (email) => {
-    return usuarios.some(u => u.email === email);
-};
 
 app.post('/usuarios', (req, res) => {
     const { nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora } = req.body;
@@ -67,9 +64,6 @@ app.put('/usuarios/:id', (req, res) => {
     }
 
 
-    if (email && email !== usuario.email && emailJaCadastrado(email)) {
-        return respostaErro(res, 400, 'Email já cadastrado');
-    }
 
     usuario.nome = nome || usuario.nome;
     usuario.dlc = dlc || usuario.dlc;
@@ -80,8 +74,6 @@ app.put('/usuarios/:id', (req, res) => {
     usuario.desenvolvedora = desenvolvedora || usuario.desenvolvedora
 
     
-
-    usuario.email = email || usuario.email;
 
 
     res.status(200).json(usuario);
@@ -100,8 +92,6 @@ app.delete('/usuarios/:id', (req, res) => {
     res.status(204).send();  
 });
 
-
-app.put('/')
 
 app.listen(3000, () => {
     console.log('Servidor rodando na porta 3000');

@@ -2,13 +2,37 @@ import { useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
 import "jspdf-autoTable";
 import { Button } from '@mui/material'
-import { Link } from "react-router-dom";
+import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Janela from "./Janela";
 
 
 export default function Home() {
-
+  const [nome, setNome] = useState('');
+  const [dlc, setDlc] = useState('');
+  const [valor, setValor] = useState(0);
+  const [lancamento, setLancamento] = useState('');
+  const [avaliacao, setAvaliacao] = useState(0);
+  const [requisitos, setRequisitos] = useState('');
+  const [desenvolvedora, setDesenvolvedora] = useState('');
   const [usuarios, setUsuarios] = useState([]);
+  const [janelaAberta, setJanelaAberta] = useState(false);
+  const [idAlterar, setIdAlterar] = useState(0);
+
+  const abrirJanela = (id) => {setJanelaAberta(true)
+  setIdAlterar(id)
+
+
+  };
+  const fecharJanela = () => setJanelaAberta(false);
+
+  const handleFormSubmit = (e) => {
+    alterarJogo(idAlterar)
+    e.preventDefault();
+    alert('Formulário enviado!');
+    fecharJanela(); 
+  };
+
 
   useEffect(() => {
     const buscarUsuario = async () => {
@@ -32,6 +56,28 @@ export default function Home() {
     alert('Deu erro!')
    }
   };
+
+  const alterarJogo = async (id) => {
+    try{
+      const resposta = await fetch('http://localhost:3000/usuarios/'+idAlterar, {
+         method: 'PUT',
+         headers: {'Content-type': 'Application/json'},
+         body: JSON.stringify({
+          nome: nome,
+          dlc: dlc,
+          valor: valor,
+          lancamento: lancamento,
+          avaliacao: avaliacao,
+          requisitos: requisitos,
+          desenvolvedora: desenvolvedora
+         })
+  
+    })
+
+    }catch{
+      console.error('Erro ocorrido com sucesso')
+    }
+  }
 
   const exportarPDF = ()=> {
     const doc = new jsPDF();
@@ -77,12 +123,29 @@ export default function Home() {
           <td><button onClick={()=> removerPessoa(usuario.id)}>
            <DeleteIcon/>
             </button></td>
-          <Link to={'/alterar/' + usuario.id}>
-          <button>Alterar</button>
-          </Link>
+            <td><button onClick={() => abrirJanela(usuario.id)}><SyncAltOutlinedIcon/></button></td>
         </tr>
       )}
     </table>
+
+    <Janela isOpen={janelaAberta} onClose={fecharJanela} id="alterar">
+    <form onSubmit={handleFormSubmit}>
+  <input type="text" name="" id="" value={nome} onChange={(event)=> setNome(event.target.value)}/>
+  <input type="text" name="" id="" value={dlc} onChange={(event)=> setDlc(event.target.value)} />
+  <input type="number" name="" id="" value={valor} onChange={(event)=> setValor(event.target.value)} />
+  <input type="date" name="" id="" value={lancamento} onChange={(event)=> setLancamento(event.target.value)} />
+  <input type="number" name="" id="" value={avaliacao} onChange={(event)=> setAvaliacao(event.target.value)} />
+  <input type="text" name="" id="" value={requisitos} onChange={(event)=> setRequisitos(event.target.value)} />
+  <input type="text" name="" id="" value={desenvolvedora} onChange={(event)=> setDesenvolvedora(event.target.value)} />
+
+
+  <button>Salvar</button>
+</form>
+    </Janela>
+    
+    
     </div>
+
+    
   );
 }
