@@ -76,7 +76,7 @@ export default function Registrar() {
               value={dlc} onChange={(event) => setDlc(event.target.value)} />
 
             <TextField label="Preço" variant="outlined" type="number" name="" id=""
-              value={valor} onChange={(event) => setVlaor(event.target.value)} />
+              value={valor} onChange={(event) => setValor(event.target.value)} />
 
             <TextField label="" variant="outlined" helperText="Lançamento" type="date" name="" id=""
               value={lancamento} onChange={(event) => setLancamento(event.target.value)} />
@@ -90,9 +90,13 @@ export default function Registrar() {
             <h3>Avaliação</h3>
             
             <Stack spacing={1}>
-              <Rating name="half-rating" defaultValue={2.5} precision={0.5}
-                value={avaliacao} onChange={(event) => setAvaliacao(event.target.value)} />
-            </Stack>
+      <Rating
+        name="half-rating"
+        value={avaliacao*1} 
+        precision={1} 
+        onChange={(event) => setAvaliacao(event.target.value)} 
+      />
+    </Stack>
             <br /><br />
 
           </div>
