@@ -21,29 +21,19 @@ const emailJaCadastrado = (email) => {
 };
 
 app.post('/usuarios', (req, res) => {
-<<<<<<< HEAD
     const { nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora } = req.body;
     
     if (!nome || !dlc || !valor || !lancamento || !avaliacao || !requisitos || !desenvolvedora) {
         return res.status(400).json({ erro: 'Nome, dlc, valor, lançamento são obrigatórios' });
-=======
-    const { nome, email } = req.body;
 
-    
-    if (!nome || !email) {
-        return respostaErro(res, 400, 'Nome e email são obrigatórios');
     }
-
-    if (emailJaCadastrado(email)) {
-        return respostaErro(res, 400, 'Email já cadastrado');
->>>>>>> 50c65bc9e503cc3d65aa94ace6f7e2bfabd07993
-    }
-
     const novoUsuario = { id: usuarios.length + 1, nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora };
     usuarios.push(novoUsuario);
     
     res.status(201).json(novoUsuario);
 });
+
+
 
 
 app.get('/usuarios', (req, res) => {
@@ -65,13 +55,11 @@ app.get('/usuarios/:id', (req, res) => {
 
 app.put('/usuarios/:id', (req, res) => {
     const { id } = req.params;
-<<<<<<< HEAD
-    const { nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora } = req.body;
-    
-=======
-    const { nome, email } = req.body;
 
->>>>>>> 50c65bc9e503cc3d65aa94ace6f7e2bfabd07993
+    const { nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora } = req.body;
+
+
+
     const usuario = usuarios.find(u => u.id === parseInt(id));
 
     if (!usuario) {
@@ -84,7 +72,6 @@ app.put('/usuarios/:id', (req, res) => {
     }
 
     usuario.nome = nome || usuario.nome;
-<<<<<<< HEAD
     usuario.dlc = dlc || usuario.dlc;
     usuario.valor = valor || usuario.valor;
     usuario.lancamento = lancamento || usuario.lancamento;
@@ -93,10 +80,10 @@ app.put('/usuarios/:id', (req, res) => {
     usuario.desenvolvedora = desenvolvedora || usuario.desenvolvedora
 
     
-=======
+
     usuario.email = email || usuario.email;
 
->>>>>>> 50c65bc9e503cc3d65aa94ace6f7e2bfabd07993
+
     res.status(200).json(usuario);
 });
 
