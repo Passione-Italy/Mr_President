@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material'
+import frufru from "../../Global.module.css"
 
 export default function Registrar() {
 
@@ -18,10 +19,15 @@ export default function Registrar() {
 
 
   const navigate = useNavigate()
+
+  const PagHome = () => {
+    navigate('/');
+  };
+
   const registrarPessoa = async (event) => {
     event.preventDefault();
     try {
-      const resposta = await fetch('http://localhost:3000/usuarios', {
+      const resposta = await fetch('http://localhost:3000/GamesList', {
         method: 'POST',
         headers: { 'Content-type': 'Application/json' },
         body: JSON.stringify({
@@ -59,7 +65,7 @@ export default function Registrar() {
           noValidate
           autoComplete="off"
         >
-          <div>
+          <div className={frufru.regisCard}>
 
             <TextField label="Nome" variant="outlined" type="text" name="" id=""
               value={nome} onChange={(event) => setNome(event.target.value)} />
@@ -92,12 +98,14 @@ export default function Registrar() {
             <br /><br />
 
           </div>
-        </Box>
+        </Box>     
+        <br />
+        <button className={frufru.b}><Button variant="contained" >Salvar</Button></button>
 
-     
-        <button><Button variant="contained" >Salvar</Button></button>
       </form>
+<br/><br/>
 
+<Button variant="contained" onClick={PagHome}>Voltar para HomePag</Button>
 
     </main>
   );

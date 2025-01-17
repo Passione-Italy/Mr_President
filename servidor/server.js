@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.use(cors());
 
-let usuarios = [];
+let GamesList = [];
 
 
 const respostaErro = (res, status, mensagem) => {
@@ -17,78 +17,78 @@ const respostaErro = (res, status, mensagem) => {
 
 
 
-app.post('/usuarios', (req, res) => {
+app.post('/GamesList', (req, res) => {
     const { nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora } = req.body;
     
     if (!nome || !dlc || !valor || !lancamento || !avaliacao || !requisitos || !desenvolvedora) {
         return res.status(400).json({ erro: 'Nome, dlc, valor, lançamento são obrigatórios' });
 
     }
-    const novoUsuario = { id: usuarios.length + 1, nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora };
-    usuarios.push(novoUsuario);
+    const novoGame = { id: GamesList.length + 1, nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora };
+    GamesList.push(novoGame);
     
-    res.status(201).json(novoUsuario);
+    res.status(201).json(novoGame);
 });
 
 
 
 
-app.get('/usuarios', (req, res) => {
-    res.status(200).json(usuarios);
+app.get('/GamesList', (req, res) => {
+    res.status(200).json(GamesList);
 });
 
 
-app.get('/usuarios/:id', (req, res) => {
+app.get('/GamesList/:id', (req, res) => {
     const { id } = req.params;
-    const usuario = usuarios.find(u => u.id === parseInt(id));
+    const Game = GamesList.find(u => u.id === parseInt(id));
 
-    if (!usuario) {
-        return respostaErro(res, 404, 'Usuário não encontrado');
+    if (!Game) {
+        return respostaErro(res, 404, 'Game não encontrado');
     }
 
-    res.status(200).json(usuario);
+    res.status(200).json(Game);
 });
 
 
-app.put('/usuarios/:id', (req, res) => {
+app.put('/GamesList/:id', (req, res) => {
     const { id } = req.params;
 
     const { nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora } = req.body;
 
 
 
-    const usuario = usuarios.find(u => u.id === parseInt(id));
+    const Game = GamesList.find(u => u.id === parseInt(id));
 
-    if (!usuario) {
-        return respostaErro(res, 404, 'Usuário não encontrado');
+    if (!Game) {
+        return respostaErro(res, 404, 'Game não encontrado');
     }
 
 
 
-    usuario.nome = nome || usuario.nome;
-    usuario.dlc = dlc || usuario.dlc;
-    usuario.valor = valor || usuario.valor;
-    usuario.lancamento = lancamento || usuario.lancamento;
-    usuario.avaliacao = avaliacao || usuario.avaliacao;
-    usuario.requisitos = requisitos || usuario.requisitos;
-    usuario.desenvolvedora = desenvolvedora || usuario.desenvolvedora
+    Game.nome = nome || Game.nome;
+    Game.dlc = dlc || Game.dlc;
+    Game.valor = valor || Game.valor;
+    Game.lancamento = lancamento || Game.lancamento;
+    Game.avaliacao = avaliacao || Game.avaliacao;
+    Game.requisitos = requisitos || Game.requisitos;
+    Game.desenvolvedora = desenvolvedora || Game.desenvolvedora
 
     
 
 
-    res.status(200).json(usuario);
+    res.status(200).json(Game);
 });
 
 
-app.delete('/usuarios/:id', (req, res) => {
+app.delete('/GamesList/:id', (req, res) => {
     const { id } = req.params;
-    const index = usuarios.findIndex(u => u.id === parseInt(id));
+    const index = GamesList.findIndex(u => u.id === parseInt(id));
 
     if (index === -1) {
-        return respostaErro(res, 404, 'Usuário não encontrado');
+        return respostaErro(res, 404, 'Game não encontrado');
     }
 
-    usuarios.splice(index, 1);
+    GamesList.splice(index, 1);
     res.status(204).send();  
 });
 

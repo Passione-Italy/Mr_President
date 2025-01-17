@@ -1,0 +1,33 @@
+body {
+    background-image: url('./public/wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.regisCard {
+    background-color: rgba(255, 255, 255, 0.719);
+    width: 450px;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 12%;
+}
+
+.alteCard {
+    background-color: rgba(255, 255, 255, 0.719);
+    width: 450px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.b{background-color: rgba(255, 255, 255, 0);}
+
+.tabHome{
+    margin-top: 12%;
+}
