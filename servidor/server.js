@@ -8,14 +8,7 @@ app.use(express.json());
 
 app.use(cors());
 
-let GamesList = [{id: 1, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
-    {id: 1, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
-    {id: 2, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
-    {id: 3, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
-    {id: 4, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
-    {id: 5, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
-    {id: 6, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"}
-];
+let GamesList = [{id: 1, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"}];
 
 
 const respostaErro = (res, status, mensagem) => {
