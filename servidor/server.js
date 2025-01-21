@@ -8,7 +8,14 @@ app.use(express.json());
 
 app.use(cors());
 
-let GamesList = [];
+let GamesList = [{id: 1, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
+    {id: 1, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
+    {id: 2, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
+    {id: 3, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
+    {id: 4, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
+    {id: 5, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"},
+    {id: 6, nome:"Hollow Knight", dlc:"Trupe Grimm", valor: 5.00, lancamento: "12/12/2012", avaliacao: 5, requisitos: "Intel Core i5, 4gb ram", desenvolvedora: "Team Cherry"}
+];
 
 
 const respostaErro = (res, status, mensagem) => {
@@ -21,7 +28,7 @@ app.post('/GamesList', (req, res) => {
     const { nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora } = req.body;
     
     if (!nome || !dlc || !valor || !lancamento || !avaliacao || !requisitos || !desenvolvedora) {
-        return res.status(400).json({ erro: 'Nome, dlc, valor, lançamento são obrigatórios' });
+        return res.status(400).json({ erro: 'Nome, dlc, valor, lançamento, avaliação, requisitos e desenvolvedora são obrigatórios' });
 
     }
     const novoGame = { id: GamesList.length + 1, nome, dlc, valor, lancamento, avaliacao, requisitos, desenvolvedora };

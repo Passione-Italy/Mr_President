@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
 import "jspdf-autoTable";
 import { useNavigate } from "react-router-dom";
-import frufru from "../../Global.module.css"
+import frufru from "../../Global.module.css";
+import Loading from "../notificacao/Loading";
 
 import Button from '@mui/material/Button';
 import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
@@ -120,7 +121,9 @@ export default function Home() {
     doc.save("Games.pdf");
   }
 
-
+    if(Games.length === 0) {
+      return <Loading/>
+    }
 
 return ( 
 

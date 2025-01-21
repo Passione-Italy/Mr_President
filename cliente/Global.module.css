@@ -31,3 +31,10 @@ body {
 .tabHome{
     margin-top: 12%;
 }
+
+.icon{
+    margin-left: 50%;
+    margin-top: 50%;
+    background-color: white;
+    border-radius: 15px;
+}
